@@ -1,0 +1,71 @@
+<div class="alert alert-dark" role="alert">{{cars.carName}}</div>
+
+<div class="card-header text-center">
+   <div carId="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner  d-flex " style="height: 50vh; min-height: 20rem; max-height: 30rem">
+  
+        <div *ngFor="let image of images; index as i; first as firstImage" class="carousel-item align-self-center"
+          [ngClass]="{ active: firstImage }" style="height: 100%; width: 100%">
+          <img src="https://localhost:44370/{{image.imagePath}}" class=""
+            style="height: 100%; width: 100%; object-fit: contain" alt="imageUrl + image.imagePath" />
+        </div>
+    </div>
+</div>    
+
+
+<table  class="table">
+    
+    <tbody  *ngIf="cars">
+         
+        <tr> 
+            <th>Marka</th>
+            <td>{{cars.brandName}}</td>
+        </tr>
+
+        <tr> 
+            <th>Model</th>
+            <td>{{cars.carName}}</td>
+        </tr>
+
+        <tr>
+            <th>Renk</th>
+            <td>{{cars.colorName}}</td>
+        </tr>
+
+        <tr>
+            <th>Model Yılı</th>
+            <td>{{cars.modelYear}}</td>
+        </tr>
+
+        <tr>
+            <th>Günlük Kiralama Ücreti</th>
+            <td>{{cars.dailyPrice | currency: "₺" }}</td>
+        </tr>
+
+        <tr>
+            <th>Açıklama</th>
+            <td>{{cars.description}}</td>
+        </tr>
+       
+        <tr>
+            <th> Gerekli Findex Puanı </th>
+            <td>{{cars.minFindexScore}} </td>
+        
+        </tr>
+        
+       
+
+    </tbody>
+    <tbody *ngIf=user (change)="getUserByEmail()">
+        <th> Sizin Findex Puanınız </th>
+        <td>{{user.findexScore}}</td>
+    </tbody>
+    
+</table>
+<div class="action">
+    <div  class="d-grid gap-2">
+        <button  (click)="rentalControl(cars.carId)"  type="button" class="btn btn-success">Kirala</button>
+        <button class="btn btn-primary" routerlink="/cars" type="button">Göz Atmaya Geri Dön</button>
+      </div>
+    
+</div>

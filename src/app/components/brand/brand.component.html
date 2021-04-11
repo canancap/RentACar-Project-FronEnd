@@ -1,0 +1,17 @@
+
+<ul class="list-group">
+  
+  <li class="list-group-item list-group-item-danger" aria-current="true" style="text-align: center;">MARKALAR</li>
+  <div class="mb-3">
+    <label for="filterText" class="form-label"></label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Marka ara">
+  </div>
+ 
+   <li (click)="setCurrentBrand(brand)"
+     routerLink="/cars/brand/{{brand.brandId}}"
+     *ngFor="let brand of brands | brandFilterPipe:filterText" 
+     [class]="getCurrentBrandClass(brand)">
+     {{brand.brandName}}
+  </li> 
+    
+</ul>
